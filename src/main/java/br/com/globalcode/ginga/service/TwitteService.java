@@ -24,7 +24,6 @@ public class TwitteService {
     private static final String DATA_INICIAL="2013-03-08";
     private static final String USER = "GingaProduto";
     private static final String AND = "&";
-    private static final String URL_IMAGEM="http://twitter.com/api/users/profile_image/";
     
     /**
      * método que busca informações no twitter
@@ -69,7 +68,7 @@ public class TwitteService {
                    List<Conteudo> conteudos=new LinkedList<Conteudo>();
 	           QueryResult resultadoBusca = twitter.search(query);
 	            List<Tweet> listaTweets = resultadoBusca.getTweets();
-	 
+                    
 	            for(Tweet tweet:listaTweets){
                         conteudos.add(getConteudo(tweet));
                     }
@@ -85,7 +84,7 @@ public class TwitteService {
         Conteudo conteudo=new Conteudo();
         conteudo.setDescricao(tweet.getText());
         conteudo.setNome(tweet.getFromUser());
-        conteudo.setImagem(URL_IMAGEM.concat(tweet.getFromUser()));
+        conteudo.setImagem(tweet.getProfileImageUrl());
         return conteudo;
     }
 }
